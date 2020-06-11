@@ -21,13 +21,6 @@ if __name__ == '__main__':
 
 @app.route('/dashboard/')
 def show_dashboard():
-    plots = []
-    plots.append(make_plot())
-
-    return render_template('dashboard.html', plots=plots)
-
-
-def make_plot():
     plot = figure(plot_height=300, sizing_mode='scale_width')
 
     x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -36,4 +29,6 @@ def make_plot():
     plot.line(x, y, line_width=4)
 
     script, div = components(plot)
-    return script, div
+
+    return render_template('layout.html', div=div, script=script)
+
