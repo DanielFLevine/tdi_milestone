@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Bokeh includes-->
-    <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.css" type="text/css" />
-    <script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.js"></script>
-    {{ script|safe }}
-  </head>
-  <body>
-    <div class='bokeh'>
-        <h1>Bokeh Plot</h1>
-        {{ div|safe }}
-    </div>
-  </body>
+<!doctype html>
+<html>
+ <head>
+  <title>Figure examples</title>
+  <link rel="stylesheet" href="http://cdn.bokeh.org/bokeh/release/bokeh-0.10.0.min.css" type="text/css" />
+  <script type="text/javascript" src="http://cdn.bokeh.org/bokeh/release/bokeh-0.10.0.min.js"></script>
+  {{ script|safe }}
+ </head>
+ <body>
+  <div class='bokeh'>
+   {{ div|safe }}
+  </div>
+ </body>
 </html>
