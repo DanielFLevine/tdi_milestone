@@ -4,16 +4,20 @@ from bokeh.embed import components
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def index():
-  return render_template('index.html')
+    return render_template('index.html')
+
 
 @app.route('/about')
 def about():
-  return render_template('about.html')
+    return render_template('about.html')
+
 
 if __name__ == '__main__':
-  app.run(port=33507)
+    app.run(port=33507)
+
 
 @app.route('/dashboard/')
 def show_dashboard():
@@ -21,6 +25,7 @@ def show_dashboard():
     plots.append(make_plot())
 
     return render_template('dashboard.html', plots=plots)
+
 
 def make_plot():
     plot = figure(plot_height=300, sizing_mode='scale_width')
