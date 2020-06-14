@@ -9,7 +9,7 @@ app = Flask(__name__)
 def plot(ticker, column):
     script, div = selection.plot(ticker, column)
 
-    return render_template('index.html', div=div, script=script, ticker=ticker, column=column)
+    return render_template('index.html', div=div, script=script)
 
 
 @app.route('/', methods=['GET', 'POST'])
