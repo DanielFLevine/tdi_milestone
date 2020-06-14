@@ -60,5 +60,5 @@ def show_dashboard():
 
     script, div = components(p)
 
-    return render_template('layout.html', div=div, script=script)
+    return render_template('embed.html', div=div, script=script)
 
