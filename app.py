@@ -1,10 +1,13 @@
 from flask import Flask, render_template, request, redirect
 from bokeh.plotting import figure
 from bokeh.embed import components
+from bokeh.embed import server_document
 import requests
 import json
 import numpy as np
 import pandas as pd
+
+script = server_document("https://daniel-tdi.herokuapp.com/dashboard/")
 
 app = Flask(__name__)
 
