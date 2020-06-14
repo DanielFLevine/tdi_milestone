@@ -34,13 +34,13 @@
         <form>
           <div class="form-group">
             <label for="InputTicker">Ticker symbol</label>
-            <input type="text" class="form-control" id="InputTicker"
+            <input type="text" name="ticker" class="form-control" id="InputTicker"
                    placeholder="Enter ticker symbol" required>
               <div class="invalid-feedback">Invalid or unsupported ticker symbol.</div>
           </div>
           <div class="form-group">
               <label for="inputState">Type of data</label>
-              <select id="inputState" class="form-control" required>
+              <select name="column" id="inputState" class="form-control" required>
                 <option selected>Closing price</option>
                 <option>Opening price</option>
                 <option>Volume</option>
