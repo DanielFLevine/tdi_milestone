@@ -12,7 +12,7 @@ def plot(ticker, column):
     return render_template('index.html', div=div, script=script)
 
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         ticker = request.form(['ticker'])
