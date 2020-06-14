@@ -2,8 +2,6 @@ from flask import Flask, render_template, request, redirect
 from bokeh.plotting import figure
 from bokeh.embed import components
 import requests
-import json
-import numpy as np
 import pandas as pd
 
 
@@ -38,7 +36,7 @@ def bokeh_plot():
                 i[j] = i[j].astype('float')
         i['return percent'] = (i['close'] - i['open']) / i['open']
 
-    p = figure(plot_height=400, plot_width=12000)  # x_axis_type="datetime")
+    p = figure(plot_height=400, plot_width=12000)
     r_nvda = p.line(x=df_amd.index, y=df_nvda['return percent'])
     r_amd = p.line(x=df_amd.index, y=df_amd['return percent'], color='green')
 
