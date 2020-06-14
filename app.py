@@ -9,11 +9,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
-
-
-@app.route('/nvda/')
-def bokeh_plot():
     data_nvda = requests.get(
         r'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=NVDA&interval=60min&outputsize=full&apikey=9QO32QU9D5ADYS17')
     data_amd = requests.get(
@@ -46,7 +41,7 @@ def bokeh_plot():
 
     script, div = components(p)
 
-    return render_template('embed.html', div=div, script=script)
+    return render_template('index.html', div=div, script=script)
 
 if __name__ == '__main__':
     app.run(port=33507)
