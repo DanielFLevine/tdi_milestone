@@ -14,12 +14,12 @@ def ticker_data(ticker):
 
         data = data.json()
         df = pd.DataFrame.from_dict(data["Time Series (60min)"], orient='index')
-        df.columns = ['open', 'high', 'low', 'close', 'volume']
+        df.columns = ['Opening price', 'High', 'Low', 'Closing price', 'Volume']
         df.index = range(len(df))
 
         for j in list(df.columns):
             df[j] = df[j].astype('float')
-        df['return percent'] = (df['close'] - df['open']) / df['open']
+        df['Return (percentage)'] = (df['Closing price'] - df['Opening price']) / df['Opening price']
 
         return df
 
