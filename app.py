@@ -14,10 +14,13 @@ def plot(ticker, column):
 
 @app.route('/', methods=['POST'])
 def index():
-    ticker = request.form(['ticker'])
-    column = request.form(['column'])
+    if request.method == 'POST':
+        ticker = request.form(['ticker'])
+        column = request.form(['column'])
 
-    return redirect(url_for('plot', ticker=ticker, column=column))
+        return redirect(url_for('plot', ticker=ticker, column=column))
+    else:
+        return render_template('index.html')
 
 
 if __name__ == '__main__':
