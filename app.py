@@ -1,6 +1,10 @@
 from flask import Flask, render_template, request, redirect
 from bokeh.plotting import figure
 from bokeh.embed import components
+import requests
+import json
+import numpy as np
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -21,14 +25,37 @@ if __name__ == '__main__':
 
 @app.route('/dashboard/')
 def show_dashboard():
-    plot = figure(plot_height=300, sizing_mode='scale_width')
+    data_nvda = requests.get(
+        r'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=NVDA&interval=1min&outputsize=full&apikey=9QO32QU9D5ADYS17')
+    data_amd = requests.get(
+        r'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=AMD&interval=1min&outputsize=full&apikey=9QO32QU9D5ADYS17')
 
-    x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    y = [2**v for v in x]
+    data_nvda = data_nvda.json()
+    data_amd = data_amd.json()
 
-    plot.line(x, y, line_width=4)
+    df_nvda = pd.DataFrame.from_dict(data_nvda["Time Series (1min)"], orient='index')
+    df_amd = pd.DataFrame.from_dict(data_amd["Time Series (1min)"], orient='index')
 
-    script, div = components(plot)
+    df_nvda['datetime'] = df_nvda.index.astype('datetime64[ns]')
+    df_amd['datetime'] = df_amd.index.astype('datetime64[ns]')
+    df_nvda.columns = ['open', 'high', 'low', 'close', 'volume', 'datetime']
+    df_amd.columns = ['open', 'high', 'low', 'close', 'volume', 'datetime']
+
+    df_nvda.index = range(len(df_nvda))
+    df_amd.index = range(len(df_nvda))
+
+    a = [df_nvda, df_amd]
+    for i in a:
+        for j in list(i.columns):
+            if j != 'datetime':
+                i[j] = i[j].astype('float')
+        i['return percent'] = (i['close'] - i['open']) / i['open']
+
+    p = figure(plot_height=400, plot_width=12000)  # x_axis_type="datetime")
+    r_nvda = p.line(x=df_amd.index, y=df_nvda['return percent'])
+    r_amd = p.line(x=df_amd.index, y=df_amd['return percent'], color='green')
+
+    script, div = components(p)
 
     return render_template('layout.html', div=div, script=script)
 
