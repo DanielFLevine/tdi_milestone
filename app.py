@@ -7,8 +7,12 @@ import pandas as pd
 
 app = Flask(__name__)
 
-
 @app.route('/')
+def index()
+    return render_template('index.html')
+
+
+@app.route('/nvda/')
 def bokeh_plot():
     data_nvda = requests.get(
         r'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=NVDA&interval=60min&outputsize=full&apikey=9QO32QU9D5ADYS17')
