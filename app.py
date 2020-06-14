@@ -20,10 +20,6 @@ def about():
     return render_template('about.html')
 
 
-if __name__ == '__main__':
-    app.run(port=33507)
-
-
 @app.route('/dashboard/')
 def show_dashboard():
     data_nvda = requests.get(
@@ -59,4 +55,7 @@ def show_dashboard():
     script, div = components(p)
 
     return render_template('embed.html', div=div, script=script)
+
+if __name__ == '__main__':
+    app.run(port=33507)
 
