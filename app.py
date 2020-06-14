@@ -16,7 +16,7 @@ def plot(ticker, column):
 def index():
     if request.method == 'POST':
         ticker = request.form(['ticker'])
-        column = request.form(['column'])
+        column = 'close'
 
         return redirect(url_for('plot', ticker=ticker, column=column))
     else:
