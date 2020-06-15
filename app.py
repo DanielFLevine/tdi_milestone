@@ -5,7 +5,7 @@ import selection
 app = Flask(__name__)
 
 
-@app.route('/<ticker>/<column>')
+@app.route('/<ticker>/<column>', methods=["GET"])
 def plot(ticker, column):
     script, div = selection.plot(ticker, column)
 
