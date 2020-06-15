@@ -32,6 +32,7 @@ def plot(ticker, column):
         p = figure(plot_height=400, plot_width=1000, x_range=Range1d(0, len(df), bounds="auto"))
         p.line(x=df.index, y=df[column])
         p.xaxis.minor_tick_line_color = None
+        p.xaxis.minor_label_text_font_size = "0"
         p.xaxis.major_label_overrides = {i: df['datetime'].iloc[i].strftime('%b %d %I:%M%p') for i in
                                          range(len(df))}
 
