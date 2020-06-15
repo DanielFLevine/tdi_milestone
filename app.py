@@ -5,11 +5,11 @@ import selection
 app = Flask(__name__)
 
 
-@app.route('/<ticker>/<column>', methods=["GET"])
-def plot(ticker, column):
-    script, div = selection.plot(ticker, column)
+#@app.route('/<ticker>/<column>', methods=["GET"])
+#def plot(ticker, column):
+#    script, div = selection.plot(ticker, column)
 
-    return render_template('index.html', div=div, script=script)
+#    return render_template('index.html', div=div, script=script)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -18,7 +18,9 @@ def index():
         ticker = request.form['ticker']
         column = 'close'
 
-        return redirect(url_for('plot', ticker=ticker, column=column))
+        script, div = selection.plot(ticker, column)
+
+        return render_template('index.html', div=div, script=script)
     else:
         return render_template('index.html')
 
