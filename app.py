@@ -16,7 +16,7 @@ app = Flask(__name__)
 def index():
     if request.method == 'POST':
         ticker = request.form['ticker']
-        column = 'close'
+        column = request.form['column']
 
         script, div = selection.plot(ticker, column)
 
