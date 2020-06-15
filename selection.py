@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 from bokeh.plotting import figure
 from bokeh.embed import components
+from bokeh.models import Range1d
 
 
 def ticker_data(ticker):
@@ -11,20 +12,28 @@ def ticker_data(ticker):
     data = data.json()
     df = pd.DataFrame.from_dict(data["Time Series (60min)"], orient='index')
     df.columns = ['open', 'high', 'low', 'close', 'volume']
+    df['datetime'] = df.index.astype('datetime64[ns]')
     df.index = range(len(df))
 
     for j in list(df.columns):
-        df[j] = df[j].astype('float')
+        if j != 'datetime':
+            df[j] = df[j].astype('float')
     df['return_percent'] = (df['close'] - df['open']) / df['open']
+
+    df = df[::-1]
+    df.index = range(len(df))
 
     return df
 
 
-def plot(ticker,column):
+def plot(ticker, column):
     df = ticker_data(ticker)
     if column in df.columns:
-        p = figure(plot_height=400, plot_width=1000)
+        p = figure(plot_height=400, plot_width=1000, x_range=Range1d(0, len(df), bounds="auto"))
         p.line(x=df.index, y=df[column])
+        p.xaxis.minor_tick_line_color = None
+        p.xaxis.major_label_overrides = {i: df['datetime'].iloc[i].strftime('%b %d %I:%M%p') for i in
+                                         range(len(df))}
 
         script, div = components(p)
 
