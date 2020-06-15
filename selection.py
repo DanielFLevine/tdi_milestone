@@ -10,7 +10,7 @@ list_of_tickers = gt.get_tickers()
 def ticker_data(ticker):
     if ticker in list_of_tickers:
         data = requests.get(
-            r'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=' + ticker + '&interval=60min&outputsize=full&apikey=9QO32QU9D5ADYS17')
+            r'https://www.alphavantage.com/query?function=TIME_SERIES_INTRADAY&symbol=' + ticker + '&interval=60min&outputsize=full&apikey=9QO32QU9D5ADYS17')
 
         data = data.json()
         df = pd.DataFrame.from_dict(data["Time Series (60min)"], orient='index')
