@@ -29,7 +29,7 @@ def ticker_data(ticker):
 def plot(ticker, column):
     df = ticker_data(ticker)
     if column in df.columns:
-        p = figure(plot_height=400, plot_width=1000, x_range=Range1d(0, len(df), bounds="auto"))
+        p = figure(title=ticker, plot_height=400, plot_width=1000, x_range=Range1d(0, len(df), bounds="auto"))
         p.line(x=df.index, y=df[column])
         p.xaxis.minor_tick_line_color = None
         p.xaxis.major_label_overrides = {i: df['datetime'].iloc[i].strftime('%b %d %I:%M%p') for i in
