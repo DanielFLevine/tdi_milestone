@@ -1,64 +1,74 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/spacelab/bootstrap.min.css">
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-        <title>Daniel's TDI Milestone Project</title>
-        <script src="https://cdn.bokeh.org/bokeh/release/bokeh-2.0.2.min.js"
-        crossorigin="anonymous"></script>
-        <script src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.0.2.min.js"
-        crossorigin="anonymous"></script>
-        <script src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.0.2.min.js"
-        crossorigin="anonymous"></script>
-        {{ script | safe }}
-    </head>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        Navigation
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/spacelab/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    <title>Daniel's TDI Milestone Project</title>
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-2.0.2.min.js"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.0.2.min.js"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.0.2.min.js"
+            crossorigin="anonymous"></script>
+    {{ script | safe }}
+</head>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    Navigation
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact">Contact</a>
+                <a class="nav-link" href="contact">Contact</a>
             </li>
-          </ul>
-        </div>
-      </nav>
-    <body>
-        <form method="post">
-            <div class="row">
-            <div class="col-md-1"></div>div>
-            <div class="col-md-4">
-          <div class="form-group">
-            <label for="InputTicker">Ticker symbol</label>
-            <input type="text" name="ticker" class="form-control" id="InputTicker"
-                   placeholder="Enter ticker symbol" required>
-              <div class="invalid-feedback">Invalid or unsupported ticker symbol.</div>
-          </div>
-          <div class="form-group">
-              <label for="inputState">Type of data</label>
-              <select name="column" id="inputState" class="form-control" required>
-                <option selected value="close">Closing price</option>
-                <option value="open">Opening price</option>
-                <option value="volume">Volume</option>
-                <option value="high">High</option>
-                <option value="low">Low</option>
-                <option value="return_percent">Return (percentage)</option>
-              </select>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
+        </ul>
+    </div>
+</nav>
+<body>
+<form method="post">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="InputTicker">Ticker symbol</label>
+                <input type="text" name="ticker" class="form-control" id="InputTicker"
+                       placeholder="Enter ticker symbol" required>
+                <div class="invalid-feedback">Invalid or unsupported ticker symbol.</div>
             </div>
-        </form>
-        <div class="col-lg-12 text-left">
-            <h1>A plot</h1>
-            {{ div | safe }}
+            <div class="form-group">
+                <label for="inputState">Type of data</label>
+                <select name="column" id="inputState" class="form-control" required>
+                    <option selected value="close">Closing price</option>
+                    <option value="open">Opening price</option>
+                    <option value="volume">Volume</option>
+                    <option value="high">High</option>
+                    <option value="low">Low</option>
+                    <option value="return_percent">Return (percentage)</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
-    </body>
+    </div>
+</form>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-lg-12 text-left">
+        <h1>A plot</h1>
+        {{ div | safe }}
+    </div>
+</div>
+</body>
 </html>
