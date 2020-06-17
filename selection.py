@@ -31,8 +31,8 @@ def plot(ticker, column):
     if column in df.columns:
         p = figure(title=ticker, plot_height=400, plot_width=1000, x_range=Range1d(0, len(df), bounds="auto"))
         p.title.align = "center"
-        p.title.text_font_size = "25px"
-        p.xaxis.axis_label = ticker
+        p.title.text_font_size = "30px"
+        p.xaxis.axis_label = 'Datetime'
         if column == 'close':
             p.yaxis.axis_label = 'Closing Price'
         elif column == 'open':
