@@ -32,6 +32,19 @@ def plot(ticker, column):
         p = figure(title=ticker, plot_height=400, plot_width=1000, x_range=Range1d(0, len(df), bounds="auto"))
         p.title.align = "center"
         p.title.text_font_size = "25px"
+        p.xaxis.axis_label = ticker
+        if column == 'close':
+            p.yaxis.axis_label = 'Closing Price'
+        elif column == 'open':
+            p.yaxis.axis_label = 'Opening Price'
+        elif column == 'volume':
+            p.yaxis.axis_label = 'Volume'
+        elif column == 'high':
+            p.yaxis.axis_label = 'High'
+        elif column == 'low':
+            p.yaxis.axis_label = 'Low'
+        elif column == 'return_percent':
+            p.yaxis.axis_label = 'Return (percentage)'
         p.line(x=df.index, y=df[column])
         p.xaxis.minor_tick_line_color = None
         p.xaxis.major_label_overrides = {i: df['datetime'].iloc[i].strftime('%b %d %I:%M%p') for i in
