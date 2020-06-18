@@ -38,16 +38,16 @@
     </div>
 </nav>
 <body>
-<form method="post">
+<form class="needs-validation" novalidate method="post">
     <div class="row align-items-center justify-content-center">
         <div class="col-md-2">
-            <div class="input-group">
+            <div class="form-group">
                 <label for="InputTicker">Ticker symbol</label>
                 <input class="form-control" type="text" id="InputTicker"
                        placeholder="Enter ticker symbol" name="ticker" required>
                 <div class="invalid-feedback">Invalid or unsupported ticker symbol.</div>
             </div>
-            <div class="input-group">
+            <div class="form-group">
                 <label for="inputState">Type of data</label>
                 <select name="column" id="inputState" class="form-control" required>
                     <option selected>Choose...</option>
