@@ -43,19 +43,21 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label for="InputTicker">Ticker symbol</label>
-                <input type="text" name="ticker" class="form-control" id="InputTicker"
+                <input class="form-control basicAutoComplete" type="text" data-url="https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=BA&apikey=demo" autocomplete="off" id="InputTicker"
                        placeholder="Enter ticker symbol" required>
                 <div class="invalid-feedback">Invalid or unsupported ticker symbol.</div>
             </div>
             <div class="form-group">
                 <label for="inputState">Type of data</label>
                 <select name="column" id="inputState" class="form-control" required>
-                    <option selected value="close">Closing price</option>
+                    <option selected>Choose...</option>
+                    <option value="close">Closing price</option>
                     <option value="open">Opening price</option>
                     <option value="volume">Volume</option>
                     <option value="high">High</option>
                     <option value="low">Low</option>
                     <option value="return_percent">Return (percentage)</option>
+                    <div class="invalid-feedback">Select data.</div>
                 </select>
             </div>
             <div class="text-center">
