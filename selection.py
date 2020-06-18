@@ -7,10 +7,10 @@ from bokeh.models import Range1d
 
 def ticker_data(ticker):
     data = requests.get(
-        r'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=' + ticker + '&interval=60min&outputsize=full&apikey=9QO32QU9D5ADYS17')
+        r'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + ticker + '&outputsize=full&apikey=9QO32QU9D5ADYS17')
 
     data = data.json()
-    df = pd.DataFrame.from_dict(data["Time Series (60min)"], orient='index')
+    df = pd.DataFrame.from_dict(data["Time Series (Daily)"], orient='index')
     df.columns = ['open', 'high', 'low', 'close', 'volume']
     df['datetime'] = df.index.astype('datetime64[ns]')
     df.index = range(len(df))
@@ -47,7 +47,7 @@ def plot(ticker, column):
             p.yaxis.axis_label = 'Return (percentage)'
         p.line(x=df.index, y=df[column])
         p.xaxis.minor_tick_line_color = None
-        p.xaxis.major_label_overrides = {i: df['datetime'].iloc[i].strftime('%b %d %I:%M%p') for i in
+        p.xaxis.major_label_overrides = {i: df['datetime'].iloc[i].strftime('%b %d %Y') for i in
                                          range(len(df))}
 
         script, div = components(p)

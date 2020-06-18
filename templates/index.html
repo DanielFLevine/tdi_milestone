@@ -80,7 +80,7 @@
           event.preventDefault();
           event.stopPropagation();
         }
-        if (form.options[form.selectedIndex].text === "Choose...") {
+        if (form.name === "column" && form.options[form.selectedIndex].text === "Choose...") {
           event.preventDefault();
           event.stopPropagation();
         }
