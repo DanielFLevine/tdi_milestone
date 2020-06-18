@@ -80,6 +80,10 @@
           event.preventDefault();
           event.stopPropagation();
         }
+        if (column.value === "Choose...") {
+          event.preventDefault();
+          event.stopPropagation();
+        }
         form.classList.add('was-validated');
       }, false);
     });
