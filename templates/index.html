@@ -48,15 +48,14 @@
                 <div class="invalid-feedback">Invalid or unsupported ticker symbol.</div>
             </div>
             <div class="form-group">
-                <label for="inputState">Type of data</label>
-                <select name="column" id="inputState" class="form-control" required>
+                <label for="InputState">Type of data</label>
+                <select name="column" id="InputState" class="form-control" required>
                     <option selected>Choose...</option>
                     <option value="close">Closing price</option>
+                    <option value="adjusted close">Closing price (adjusted)</option>
                     <option value="open">Opening price</option>
-                    <option value="volume">Volume</option>
                     <option value="high">High</option>
                     <option value="low">Low</option>
-                    <option value="return_percent">Return (percentage)</option>
                 </select>
                 <div class="invalid-feedback">Select data.</div>
             </div>
