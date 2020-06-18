@@ -80,7 +80,7 @@
           event.preventDefault();
           event.stopPropagation();
         }
-        if (form.value === "Choose...") {
+        if (form.options[form.selectedIndex].text === "Choose...") {
           event.preventDefault();
           event.stopPropagation();
         }
