@@ -3,9 +3,11 @@ import pandas as pd
 from bokeh.plotting import figure
 from bokeh.embed import components
 from bokeh.models import Range1d
+import datetime
 
 
 def ticker_data(ticker):
+    """Grabs data from Alpha Vantage API, renames columns, and grabs last data from last 30 days."""
     data = requests.get(
         r'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=' + ticker + '&outputsize=full&apikey=9QO32QU9D5ADYS17')
 
@@ -21,10 +23,17 @@ def ticker_data(ticker):
     df = df[::-1]
     df.index = range(len(df))
 
+    start_date = datetime.datetime.now() - datetime.timedelta(days=30)
+
+    df = df.loc[df['datetime'] >= start_date]
+
+    df.index = range(len(df))
+
     return df
 
 
 def plot(ticker, column):
+    """Builds Bokeh plot based on choice of data."""
     df = ticker_data(ticker)
     if column in df.columns:
         p = figure(title=ticker.upper() + " " + column.upper(), plot_height=400, plot_width=1000, x_range=Range1d(0, len(df), bounds="auto"))

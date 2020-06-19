@@ -21,7 +21,7 @@
     {{ script | safe }}
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <span class="navbar-brand mb-0 h1" href="/">TDI Milestone Project</span>
+    <a class="navbar-brand" href="/">TDI Milestone Project</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -38,14 +38,19 @@
     </div>
 </nav>
 <body>
-<form method="post" class="needs-validation" novalidate>
+<div class="row align-items-center justify-content-center my-5">
+    <div class="col-md-3"><h4>Instructions</h4><br>Choose a ticker and the type of data, then click the "Create graph"
+        button to display a Bokeh plot with the last 30 days data (days when the market is closed are ignored). You can
+        find a ticker symbol&nbsp;<a class="pl-auto" href="https://finance.google.com/finance">here</a>.
+    </div>
+</div>
+<form method="post">
     <div class="row align-items-center justify-content-center">
         <div class="col-md-2">
             <div class="form-group">
                 <label for="InputTicker">Ticker symbol</label>
                 <input class="form-control" type="text" id="InputTicker"
                        placeholder="Enter ticker symbol" name="ticker" required>
-                <div class="invalid-feedback">Invalid or unsupported ticker symbol.</div>
             </div>
             <div class="form-group">
                 <label for="InputState">Type of data</label>
@@ -63,38 +68,6 @@
         </div>
     </div>
 </form>
-<script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-$.ajax({
-    url: "companylist.csv",
-    async: false,
-    success: function (csvd) {
-        data = $.csv.toArrays(csvd);
-    },
-    dataType: "text",
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        if (!(form.value in list) === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
-});
-</script>
 <div class="row align-items-center justify-content-center">
     <div>
         {{ div | safe }}
